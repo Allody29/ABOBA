@@ -13,7 +13,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="text-sm font-semibold uppercase tracking-wider text-primary">О нас</div>
           <h1 className="mt-2 max-w-3xl text-5xl font-extrabold leading-tight text-secondary md:text-6xl">
-            Поставляем здоровье животноводству — с 2014 года
+            Поставляем здоровье животноводству — с 2024 года
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
             ECOgrad — оптовый поставщик ветеринарных препаратов, вакцин и средств биобезопасности.
