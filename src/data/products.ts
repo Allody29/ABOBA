@@ -171,9 +171,6 @@ export const products: Product[] = [
   { name: "Хачонет", packaging: "22 кг", category: "disinfectants", form: "Дезсредство" },
   { name: "Торнакс С", packaging: "24 кг", category: "disinfectants", form: "Дезсредство" },
   { name: "Сид 2000", packaging: "10 кг", category: "disinfectants", form: "Дезсредство" },
-  { name: "UCO DES P", packaging: "10 кг", category: "disinfectants", form: "Дезсредство" },
-  { name: "UCO DES 3000", packaging: "20 Л", category: "disinfectants", form: "Дезсредство" },
-
 
   // VITAMINS
   { name: "Ловит АД3Е", category: "vitamins", form: "Витаминный комплекс" },
@@ -200,9 +197,11 @@ export const products: Product[] = [
   { name: "Porcilis ColiClos", packaging: "25 доз", category: "vaccines", form: "Вакцина" },
   { name: "Glesser", packaging: "25 доз", category: "vaccines", form: "Вакцина" },
   { name: "Роковак Нео", category: "vaccines", form: "Вакцина" },
+  { name: "RinBio ND (TS)", packaging: "1000 доз / флакон", category: "vaccines", form: "Вакцина" },
+  { name: "RinBio IB (TS)", packaging: "1000 доз / флакон", category: "vaccines", form: "Вакцина" },
+  { name: "RinVac Rec ND+AI", packaging: "500 мл / флакон", category: "vaccines", form: "Вакцина" },
+  { name: "RinVac ND+AI+FAD", packaging: "500 мл / флакон", category: "vaccines", form: "Вакцина" },
+  { name: "UCO DES 3000", packaging: "20 л", category: "disinfectants", form: "Дезсредство" },
+  { name: "UCO DES P", category: "disinfectants", form: "Дезсредство" },
   { name: "Иглы одноразовые 0,90×25 мм", category: "vaccines", form: "Расходный материал" },
-  { name: "RinBio IB (TS)", packaging: "1000 доз\10 флаконов", category: "vaccines", form: "Вакцина" },
-  { name: "RinBio ND (TS)", packaging: "1000 доз\10 флаконов", category: "vaccines", form: "Вакцина" },
-  { name: "RinVac Rec ND AI", packaging: "500 МЛ", category: "vaccines", form: "Вакцина" },
-  { name: "RinVac Rec ND AI FAD", packaging: "500 МЛ", category: "vaccines", form: "Вакцина" },
 ];

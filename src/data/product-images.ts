@@ -134,6 +134,12 @@ const imageMap: Record<string, string> = {
   "virusid": "/products/virusid.jpg",
   "virutek": "/products/virutek.jpg",
   "vizel": "/products/vizel.jpg",
+  "rinbio_nd_ts": "/products/rinbio_nd_ts.png",
+  "rinbio_ib_ts": "/products/rinbio_ib_ts.png",
+  "rinvac_rec_nd_ai": "/products/rinvac_rec_nd_ai.png",
+  "rinvac_nd_ai_fad": "/products/rinvac_nd_ai_fad.png",
+  "uco_des_3000": "/products/uco_des_3000.jpg",
+  "uco_des_p": "/products/uco_des_p.jpg",
 };
 
 // Russian product name → slug
@@ -275,6 +281,16 @@ const nameToSlug: Record<string, string> = {
   "Ловит LC Energy": "lovit_lc_energy",
   "Е-селен": "e_selen",
   "Амино Плюс": "amino_plus",
+
+  // Ringpu vaccines
+  "RinBio ND (TS)": "rinbio_nd_ts",
+  "RinBio IB (TS)": "rinbio_ib_ts",
+  "RinVac Rec ND+AI": "rinvac_rec_nd_ai",
+  "RinVac ND+AI+FAD": "rinvac_nd_ai_fad",
+
+  // UCO disinfectants
+  "UCO DES 3000": "uco_des_3000",
+  "UCO DES P": "uco_des_p",
 
   // Vaccines
   "Innovax-ND-IBD": "innovax_nd_ibd",
