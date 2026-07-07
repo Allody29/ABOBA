@@ -198,4 +198,8 @@ export const products: Product[] = [
   { name: "Glesser", packaging: "25 доз", category: "vaccines", form: "Вакцина" },
   { name: "Роковак Нео", category: "vaccines", form: "Вакцина" },
   { name: "Иглы одноразовые 0,90×25 мм", category: "vaccines", form: "Расходный материал" },
+  { name: "RinBio IB (TS)", category: "vaccines", form: "Вакцина" },
+  { name: "RinBio ND (TS)", category: "vaccines", form: "Вакцина" },
+  { name: "RinVac Rec ND AI", category: "vaccines", form: "Вакцина" },
+  { name: "RinVac Rec ND AI FAD", category: "vaccines", form: "Вакцина" },
 ];
