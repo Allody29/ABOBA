@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ECOgrad — сайт-каталог
 
-## Getting Started
+Сайт [ecograd.com.kz](https://www.ecograd.com.kz) — каталог оптового поставщика ветеринарных препаратов, вакцин и дезсредств (Алматы, Казахстан). Заявки принимаются в WhatsApp и по телефону, цены по запросу.
 
-First, run the development server:
+Стек: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, хостинг Vercel. Базы данных нет: каталог хранится в файлах `src/data/`.
+
+> В этой версии Next.js есть несовместимые изменения. Перед правками кода читайте документацию в `node_modules/next/dist/docs/` (см. `AGENTS.md`).
+
+## Запуск
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Сайт откроется на http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Проверки перед коммитом:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+```
 
-## Learn More
+```bash
+npm run typecheck
+```
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run check:data
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Структура
 
-## Deploy on Vercel
+| Путь | Что там |
+|---|---|
+| `src/app/` | Страницы: главная, `catalog/`, `catalog/[slug]/` (страница препарата), `about/`, `contacts/`, `not-found.tsx`; служебные `robots.ts`, `sitemap.ts`, `llms.txt/`, `api/descriptions/` |
+| `src/components/` | Шапка, подвал, хлебные крошки, JSON-LD, аналитика; `ui/` — диалог и выезжающая панель |
+| `src/data/products.ts` | Товары и категории |
+| `src/data/product-descriptions.ts` | Описания препаратов (ключ — slug). Только для серверного кода |
+| `src/lib/site.ts` | Телефон, WhatsApp, адрес, режим работы, базовый URL — менять здесь |
+| `public/products/` | Фото товаров |
+| `docs/owner-questions.md` | Данные, которые нужны от владельца |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Как добавить товар
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Положите фото в `public/products/` (JPEG или PNG, длинная сторона до 1200 px, до 300 КБ).
+2. Добавьте строку в `products` в `src/data/products.ts`:
+
+   ```ts
+   { slug: "enrokol", name: "Энрокол", packaging: "1 л", category: "antibiotics", form: "Оральный раствор", image: "/products/enrokol.jpg" },
+   ```
+
+   `slug` — латиница, цифры и дефисы, адрес страницы будет `/catalog/enrokol`. У разных фасовок одного препарата slug общий: они показываются на одной странице.
+3. Если есть описание, добавьте его в `descriptions` в `src/data/product-descriptions.ts` под тем же slug. Противопоказания пишите в `contraindications`, а не в `indications`.
+4. Запустите `npm run check:data`: проверка найдёт дубли, неверные slug, отсутствующие файлы фото и противопоказания в поле «Показания».
+
+## Аналитика
+
+Счётчики подключаются переменными окружения в Vercel: `NEXT_PUBLIC_YM_ID` (Яндекс Метрика) и `NEXT_PUBLIC_GA_ID` (Google Analytics 4). Цели: `whatsapp_click`, `phone_click`, `description_open`, `catalog_search`. См. `src/components/Analytics.tsx`.

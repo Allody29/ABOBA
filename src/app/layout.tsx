@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
 import { SiteLayout } from "@/components/Layout";
+import { JsonLd } from "@/components/JsonLd";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+import {
+  ADDRESS,
+  OPENING_HOURS_SCHEMA,
+  PHONE_E164,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -9,28 +19,47 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const OG_IMAGE =
-  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2eff37ab-5af1-4954-9a8a-22c734ac97e5/id-preview-835bb99c--c1e056f8-7cc1-4eca-97bc-e1f9bb3c7b31.lovable.app-1776936796474.png";
-
-const SITE_DESCRIPTION =
-  "Pet Pharma Hub is a website for a veterinary drug supplier, featuring product categorization and filtering.";
+const DEFAULT_TITLE = "ECOgrad — Ветеринарные препараты оптом в Казахстане";
 
 export const metadata: Metadata = {
-  title: "ECOgrad — Ветеринарные препараты",
+  metadataBase: new URL(SITE_URL),
+  title: DEFAULT_TITLE,
   description: SITE_DESCRIPTION,
   openGraph: {
-    title: "ECOgrad — Ветеринарные препараты",
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
+    locale: "ru_KZ",
     type: "website",
-    images: [OG_IMAGE],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary",
-    site: "@Lovable",
-    title: "ECOgrad — Ветеринарные препараты",
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
     description: SITE_DESCRIPTION,
-    images: [OG_IMAGE],
+    images: [DEFAULT_OG_IMAGE.url],
   },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WholesaleStore",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo-horizontal.png`,
+  image: `${SITE_URL}${DEFAULT_OG_IMAGE.url}`,
+  telephone: PHONE_E164,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: ADDRESS.street,
+    addressLocality: ADDRESS.city,
+    addressCountry: ADDRESS.country,
+  },
+  openingHours: OPENING_HOURS_SCHEMA,
+  areaServed: { "@type": "Country", name: "Казахстан" },
+  currenciesAccepted: "KZT",
 };
 
 export default function RootLayout({
@@ -39,7 +68,14 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${manrope.variable} h-full antialiased`}>
       <body className="min-h-full">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-secondary focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-secondary-foreground"
+        >
+          Перейти к содержимому
+        </a>
         <SiteLayout>{children}</SiteLayout>
+        <JsonLd data={organizationJsonLd} />
       </body>
     </html>
   );

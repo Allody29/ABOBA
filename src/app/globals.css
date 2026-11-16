@@ -22,6 +22,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-strong: var(--primary-strong);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -60,6 +61,9 @@
 
   --primary: oklch(0.71 0.16 235);
   --primary-foreground: oklch(0.99 0.005 230);
+  /* Текст акцентного цвета на светлом фоне: контраст 5,7:1 с белым (WCAG AA).
+     Яркий --primary — только для декора, иконок, рамок и текста на тёмно-синем. */
+  --primary-strong: oklch(0.5 0.15 240);
   --secondary: oklch(0.34 0.06 245);
   --secondary-foreground: oklch(0.99 0.005 230);
 
@@ -80,8 +84,15 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee-scroll 40s linear infinite;
+@media (prefers-reduced-motion: no-preference) {
+  .animate-marquee {
+    animation: marquee-scroll 40s linear infinite;
+  }
+  .marquee:hover .animate-marquee,
+  .marquee:focus-within .animate-marquee,
+  .marquee[data-paused="true"] .animate-marquee {
+    animation-play-state: paused;
+  }
 }
 
 @layer base {
